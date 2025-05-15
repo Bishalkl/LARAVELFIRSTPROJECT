@@ -1,7 +1,12 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ShowProfile;
+
+use App\Http\Middleware\AgeCheck;
+use App\Http\Middleware\CountryCheck;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -90,7 +95,7 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, "login"]);
 
 // Specifying the UserController that pass parameter and to the method and do operation and it could be multiple and single, doesn't matter but should use constrant on both
-Route::get('/user/{id?}/{name?}', [UserController::class, "userId"])
+Route::get('/user/{id?}/{name?}', [UserController::class, "userDetail"])
           ->where('id', '[0-9]+')
           ->where('name', '[A-Z-a-z]+');
 
@@ -99,3 +104,29 @@ Route::get('/user/{id?}/{name?}', [UserController::class, "userId"])
 // php artisan command to create invokable function or single action controller
 // php artisan make:controller controllername "which is normal is not real controller like name for example "someting Controller" it is "specific name like "ShowProfile"  -- invokable"
 route::get('/profile', ShowProfile::class);
+
+
+
+
+// Resource Controller 
+//    for create a command
+        // php artisan make:controller controllerName --resource
+        // this controller is normally is use specify the all the method for curd operation and also help it is use to specify the url for route consistency
+
+// specify the routes for controller
+route::resource('tasks' , TaskController::class);
+
+// "Also i have learned that  always use speficifc url route in top and after that parameter url, if we don't use constrant in paramater route than if concident with that first url same url it will invoke top url not second parameter url or use constrant that conflict"
+
+
+// Middleware in routes 
+// first create a middleare
+// command:: php artisan make:middleware ageCheck
+// import route file path to web.php
+// add middleware() there 
+// and put conditon on AgeCheck middleware class
+// have to use searchquery in url routes
+
+
+Route::view('home', 'home')->middleware([AgeCheck::class, CountryCheck::class]);
+Route::view('about', 'about');

@@ -1,2 +1,4 @@
-<h1>{{$name}}</h1>
-<a href="{{route('userProfileName', ['name' => $name])}}">Name of Profile</a>
+<div>
+    <!-- Simplicity is the essence of happiness. - Cedric Bledsoe -->
+     <h1>Home</h1>
+</div>

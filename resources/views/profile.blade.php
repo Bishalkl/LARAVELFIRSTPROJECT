@@ -38,7 +38,7 @@
 
                     <div class="p-4 border rounded-lg md:col-span-2">
                         <h3 class="text-lg font-medium text-gray-600 mb-2">Password (hidden)</h3>
-                        <p class="text-gray-800">********</p>
+                        <p class="text-gray-800">***********</p>
                     </div>
                 </div>
             @else

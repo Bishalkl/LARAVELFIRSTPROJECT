@@ -35,7 +35,7 @@ Route::get('/user/{value?}', function($value = null) {
 // Route for login
 Route::get('/login', [LoginController::class, 'index'])->name('login.form');
 // Routes for login
-Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.sumbit');
+Route::post('/login', [LoginController::class, 'store'])->name('login.submit');
 
 
 

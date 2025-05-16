@@ -2,6 +2,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShowProfile;
 
 use App\Http\Middleware\AgeCheck;
@@ -12,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::view('master', 'master');
-Route::view('/', 'welcome');
+// so we can loading apis manulally 
+// first prefix, middleware, group()
+Route::prefix('api')->middleware('api')->group(base_path('routes/api.php'));
+
+
+
 
 // create route
 Route::get('/user/{value?}', function($value = null) {
@@ -22,6 +27,19 @@ Route::get('/user/{value?}', function($value = null) {
     // new version use with to value pass 
     return view('home')->with(['value'=> $value]);
 })->where('value', '[a-z-A-Z]+');
+
+
+// all the view routes
+
+// controllers routes
+// Route for login
+Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+// Routes for login
+Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.sumbit');
+
+
+
+// CSRF TOKEN
 
 
 

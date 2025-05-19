@@ -55,5 +55,14 @@ class UserController extends Controller
         return "error occured";
     }
 
+    // to delete the user data
+    public function deleteUser($userId) {
+        $user = User::where('id', $userId)->first();
+        if($user->delete()) {
+            return redirect()->route('user.view');
+        }
+        return "error occured";
+    }
+
 
 }

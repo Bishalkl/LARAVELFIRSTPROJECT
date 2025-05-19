@@ -35,25 +35,32 @@ Route::get('/', function() {
 
 // for get data we use ModelsName::get();
 // for insert dta we use by create new object of model and insert the data
-// for update we use 
+// for update we use first edit function by getting form with old value with route udateuser and update it 
+// to get id for update: ModelName:where('id', $userId)->first();
+
 
 
 
 
 // how to interaction models with routes
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/', [UserController::class, 'index'])->name('user.index');
+
+// view all the data in blade 
+Route::get('/user/list', [UserController::class, 'viewData'])->name('user.view');
 
 // now for insert should i have add 
-Route::post('/users/insert', [UserController::class, 'insertUser'])->name('user.insert');
+Route::post('/user/insert', [UserController::class, 'insertUser'])->name('user.insert');
+
+// lets' edit routes for update data and view interface
+Route::get('/user/{userId}/edit', [UserController::class, 'editUser'])->name('user.edit');
 
 // now for update
-Route::put('/users/update/{userId}', [UserController::class, 'updateUser'])->name('user.update');
+Route::put('/user/{userId}/udpate', [UserController::class, 'updateUser'])->name('user.update');
 
-// list routes
-Route::get('/users/list', [UserController::class, 'viewData'])->name('user.view');
+// now for delete or destroy
+Route::delete('/user/{userId}/delete', [UserController::class, 'deleteUser'])->name('user.destroy');
 
-// lets' create view
-Route::get('/user/edit/{userId}', [UserController::class, 'editUser'])->name('user.edit');
+
 
 
 

@@ -53,18 +53,6 @@
                 Update User
             </button>
         </form>
-
-        <hr class="my-6 border-t border-gray-300">
-
-        {{-- Delete Form --}}
-        <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition duration-300">
-                Delete User
-            </button>
-        </form>
     @endif
 </div>
 </body>

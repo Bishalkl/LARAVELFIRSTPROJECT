@@ -44,10 +44,10 @@ Route::get('/', function() {
 
 
 // how to interaction models with routes
-Route::get('/', [UserController::class, 'index'])->name('user.index');
+Route::get('/index', [UserController::class, 'index'])->name('user.index');
 
 // view all the data in blade 
-Route::get('/user/list', [UserController::class, 'viewData'])->name('user.view');
+Route::get('/', [UserController::class, 'viewData'])->name('user.view');
 
 // now for insert should i have add 
 Route::post('/user/insert', [UserController::class, 'insertUser'])->name('user.insert');

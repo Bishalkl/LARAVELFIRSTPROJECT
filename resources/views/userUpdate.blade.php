@@ -7,6 +7,9 @@
 </head>
 <body class="bg-gradient-to-r from-blue-50 to-purple-100 min-h-screen flex items-center justify-center px-4">
     <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+    @if (!$user)
+        <h1 class="text-2xl font-bold text-red-600 text-center">User not found.</h1>
+    @else
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Edit User</h1>
 
         {{-- Display validation errors --}}
@@ -54,7 +57,7 @@
         <hr class="my-6 border-t border-gray-300">
 
         {{-- Delete Form --}}
-        <form action="{{route('user.destroy', $user->id)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+        <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
             @csrf
             @method('DELETE')
             <button type="submit"
@@ -62,6 +65,7 @@
                 Delete User
             </button>
         </form>
-    </div>
+    @endif
+</div>
 </body>
 </html>

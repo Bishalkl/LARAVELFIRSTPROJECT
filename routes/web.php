@@ -37,7 +37,8 @@ Route::get('/', function() {
 // for insert dta we use by create new object of model and insert the data
 // for update we use first edit function by getting form with old value with route udateuser and update it 
 // to get id for update: ModelName:where('id', $userId)->first();
-
+// for delete i have used same hat edit where the view got to form button for update and one for delete where first form got @method('PUT) another form got @method('DELETE');
+// for delete models code is : $user->delete();
 
 
 

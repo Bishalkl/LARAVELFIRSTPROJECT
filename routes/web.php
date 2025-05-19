@@ -33,6 +33,10 @@ Route::get('/', function() {
 // to get the users data from models is $users = Users::get(); which return $users and that models interactive with controller and after controller interact with routs
 // we can also pass the value using the compact, with, traditional to the view via controller interacting with routes and models where controller became middle man for both routes, and models
 
+// for get data we use ModelsName::get();
+// for insert dta we use by create new object of model and insert the data
+// for update we use 
+
 
 
 
@@ -40,10 +44,16 @@ Route::get('/', function() {
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
 // now for insert should i have add 
-Route::post('/users', [UserController::class, 'insertUser'])->name('user.post');
+Route::post('/users/insert', [UserController::class, 'insertUser'])->name('user.insert');
+
+// now for update
+Route::put('/users/update/{userId}', [UserController::class, 'updateUser'])->name('user.update');
 
 // list routes
 Route::get('/users/list', [UserController::class, 'viewData'])->name('user.view');
+
+// lets' create view
+Route::get('/user/edit/{userId}', [UserController::class, 'editUser'])->name('user.edit');
 
 
 

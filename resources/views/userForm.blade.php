@@ -8,7 +8,7 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
         <h1 class="text-2xl font-semibold mb-6 text-center">Add New User</h1>
-        <form action="{{route('user.post')}}" method="POST" class="space-y-4">
+        <form action="{{route('user.insert')}}" method="POST" class="space-y-4">
             @csrf
 
             <div>

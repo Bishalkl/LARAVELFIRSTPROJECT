@@ -16,23 +16,20 @@ class UserController extends Controller
     }
 
     public function viewData() {
-        $users = User::get();
+        $users = User::All();
         return view('user', compact('users'));
     }
 
     // insert data  with databaes using models
     public function insertUser(Request $request) {
-        // create new object for models
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-       
-        // to save data using models
-        if ($user->save()) {
-            return redirect()->route('user.view');
-        }
-        return "error occured";
+        // using eloquent method 
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        return redirect()->route('user.view');
     }
 
     // to update we need editview
@@ -43,25 +40,21 @@ class UserController extends Controller
 
     // update data with database using models 
     public function updateUser(Request $request, $userId) {
-        // first get the data using id
-        $user = User::where('id', $userId)->first();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-
-        if ($user->save()) {
-            return redirect()->route('user.view');
-        }
-        return "error occured";
+        // update
+        User::where('id', $userId)->upated(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+        return redirect()->route('user.view');
     }
 
     // to delete the user data
     public function deleteUser($userId) {
-        $user = User::where('id', $userId)->first();
-        if($user->delete()) {
-            return redirect()->route('user.view');
-        }
-        return "error occured";
+        // directly delete by condition 
+        User::where('id', $userId)->delete();
+        return redirect()->route('user.view');
     }
 
 

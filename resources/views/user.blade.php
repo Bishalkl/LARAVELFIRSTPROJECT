@@ -57,7 +57,7 @@
             <!-- Enhanced Pagination -->
             <div class="mt-10">
                 <div class="flex justify-center">
-                    {{ $users->links('vendor.pagination.tailwind') }}
+                    {{ $users->links() }}
                 </div>
             </div>
 

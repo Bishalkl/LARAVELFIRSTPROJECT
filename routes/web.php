@@ -43,12 +43,13 @@ Route::delete('/user/{userId}/delete', [UserController::class, 'deleteUser'])->n
 // cursor Paginate()
 
 // how to use 
-// $users = User::All()->paginate(5);
-// $users = User::All()->simplePaginate(5); //default 15 data
-// $users = User::All()->orderBy('id')->cursorPaginate(5);
+// $users = User::paginate(5);
+// $users = User::simplePaginate(5); //default 15 data
+// $users = User::orderBy('id')->cursorPaginate(5);
 // difference between cursor and other pagination is fast is cursor by indexing and need order way but also cause effect in ram and serve if we use cursor show that it is not popular for automatic data loaded use cursor pagination 
 
-// {{ to add the $data->link() }} in blade 
+// {{ to add the $users->link() }} in blade 
+// 
 
 
 

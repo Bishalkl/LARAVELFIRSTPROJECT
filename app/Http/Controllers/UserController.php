@@ -16,8 +16,8 @@ class UserController extends Controller
     }
 
     public function viewData() {
-        $users = User::paginate(5);
-        // $users = User::All()->simplePaginate(5); //default 15 data
+        // $users = User::paginate();
+        $users = User::orderBy('name')->cursorPaginate(5); //default 15 data
         // $users = User::All()->orderBy('id')->cursorPaginate(5);
 
         return view('user', compact('users'));
